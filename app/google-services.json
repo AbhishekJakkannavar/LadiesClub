@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "474772895605",
+    "firebase_url": "https://ladiesclub-700ab.firebaseio.com",
+    "project_id": "ladiesclub-700ab",
+    "storage_bucket": "ladiesclub-700ab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:474772895605:android:c75fce88e526f047",
+        "android_client_info": {
+          "package_name": "shareholder.infinity.com.ladiesclub"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "474772895605-c5kj5ft4ico9p6861cg214imvv999o3g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "shareholder.infinity.com.ladiesclub",
+            "certificate_hash": "5191d805ef47be31bb1a11f7c5d5715ea7493acd"
+          }
+        },
+        {
+          "client_id": "474772895605-pg30c4uds42tadjs9ippn7ccbna43ntp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIx_-3enhX24f8ZslhoWshG9vrVZNs3Jo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "474772895605-pg30c4uds42tadjs9ippn7ccbna43ntp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
