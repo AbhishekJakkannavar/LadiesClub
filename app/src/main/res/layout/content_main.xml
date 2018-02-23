@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorbackground"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="shareholder.infinity.com.ladiesclub.MainActivity"
-    android:background="@color/colorbackground"
+
     tools:showIn="@layout/activity_main">
 <android.support.constraint.ConstraintLayout
     android:layout_width="match_parent"
@@ -110,13 +112,28 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:text="About App"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
         android:textStyle="bold"
-        android:text="About App"
         app:layout_constraintEnd_toEndOf="@+id/aboutappButton"
         app:layout_constraintHorizontal_bias="0.521"
         app:layout_constraintStart_toStartOf="@+id/aboutappButton"
         app:layout_constraintTop_toTopOf="@+id/textView3" />
+
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="16dp"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
+        app:layout_constraintEnd_toEndOf="@+id/aboutappButton"
+        app:layout_constraintStart_toStartOf="@+id/feedbackButton"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"></com.google.android.gms.ads.AdView>
 
 </android.support.constraint.ConstraintLayout>
 

@@ -2,14 +2,16 @@ package shareholder.infinity.com.ladiesclub;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageButton;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,12 +19,13 @@ public class MainActivity extends AppCompatActivity {
     ImageButton designbtn;
     ImageButton aboutbtn;
     ImageButton feedbackbtn;
+    private AdView mAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -35,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 //        });
 
 
-        channelbtn = (ImageButton)findViewById(R.id.youtubebtn);
+        channelbtn = findViewById(R.id.youtubebtn);
         channelbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,8 +48,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-        designbtn = (ImageButton)findViewById(R.id.designbtn);
+        designbtn = findViewById(R.id.designbtn);
         designbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        feedbackbtn = (ImageButton)findViewById(R.id.feedbackButton);
+        feedbackbtn = findViewById(R.id.feedbackButton);
         feedbackbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        aboutbtn = (ImageButton)findViewById(R.id.aboutappButton);
+        aboutbtn = findViewById(R.id.aboutappButton);
         aboutbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,6 +75,18 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+        //Advertisement Code
+        // Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713
+        MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
+
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
+
+
     }
 
     @Override
