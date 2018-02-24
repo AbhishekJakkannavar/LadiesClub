@@ -9,8 +9,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,6 +22,9 @@ public class MainActivity extends AppCompatActivity {
     ImageButton aboutbtn;
     ImageButton feedbackbtn;
     private AdView mAdView;
+    private InterstitialAd interstitialAdOfDesign;
+    private InterstitialAd interstitialAdOfFeedback;
+    private InterstitialAd interstitialAdOfAbout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         channelbtn = findViewById(R.id.youtubebtn);
+        designbtn = findViewById(R.id.designbtn);
+        feedbackbtn = findViewById(R.id.feedbackButton);
+        aboutbtn = findViewById(R.id.aboutappButton);
         channelbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,26 +56,25 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        designbtn = findViewById(R.id.designbtn);
-        designbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,DesignActivity.class);
-                startActivity(intent);
-            }
-        });
+//        designbtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(MainActivity.this,DesignActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
 
-        feedbackbtn = findViewById(R.id.feedbackButton);
-        feedbackbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,FeedbackActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        aboutbtn = findViewById(R.id.aboutappButton);
+//
+//        feedbackbtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(MainActivity.this,FeedbackActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+//
+//
         aboutbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        //Advertisement Code
+        //Advertisement Code for Banner in Mainactivity
         // Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713
         MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
 
@@ -85,9 +92,109 @@ public class MainActivity extends AppCompatActivity {
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
+        //Advertisement Code for Interstitial Add of Design Activity
+        interstitialAdOfDesign = new InterstitialAd(this);
+        interstitialAdOfDesign.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        interstitialAdOfDesign.loadAd(new AdRequest.Builder().addTestDevice("80D564A54369E0651401428DFD20F1E1").build());
+
+        interstitialAdOfDesign.setAdListener(new AdListener()
+
+                                             {
+                                                 @Override
+                                                 public void onAdClosed() {
+                                                     super.onAdClosed();
+                                                     startActivity(new Intent(MainActivity.this, JewelleryActivity.class));
+                                                     interstitialAdOfDesign.loadAd(new AdRequest.Builder().build());
+                                                 }
+                                             }
+
+        );
+
+
+        //Advertisement Code for Interstitial Add of Feedback Activity
+        interstitialAdOfFeedback = new InterstitialAd(this);
+        interstitialAdOfFeedback.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        interstitialAdOfFeedback.loadAd(new AdRequest.Builder().addTestDevice("80D564A54369E0651401428DFD20F1E1").build());
+
+        interstitialAdOfFeedback.setAdListener(new AdListener()
+
+                                               {
+                                                   @Override
+                                                   public void onAdClosed() {
+                                                       super.onAdClosed();
+                                                       startActivity(new Intent(MainActivity.this, FeedbackActivity.class));
+                                                       interstitialAdOfFeedback.loadAd(new AdRequest.Builder().build());
+                                                   }
+                                               }
+
+        );
+
+
+        //Advertisement Code for Interstitial Add of About Activity
+        interstitialAdOfAbout = new InterstitialAd(this);
+        interstitialAdOfAbout.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        interstitialAdOfAbout.loadAd(new AdRequest.Builder().addTestDevice("80D564A54369E0651401428DFD20F1E1").build());
+
+        interstitialAdOfAbout.setAdListener(new AdListener()
+
+                                            {
+                                                @Override
+                                                public void onAdClosed() {
+                                                    super.onAdClosed();
+                                                    startActivity(new Intent(MainActivity.this, AboutActivity.class));
+                                                    interstitialAdOfAbout.loadAd(new AdRequest.Builder().build());
+                                                }
+                                            }
+
+        );
 
 
     }
+
+    //Onclick Funtion of Designbtn
+    public void startDesignActivity(View view) {
+        if (interstitialAdOfDesign.isLoaded()) {
+            interstitialAdOfDesign.show();
+        } else {
+            startActivity(new Intent(this, JewelleryActivity.class));
+        }
+
+    }
+
+
+    //Onclick Funtion of Feedbackbtn
+    public void startFeedbackActivity(View view) {
+        if (interstitialAdOfFeedback.isLoaded()) {
+            interstitialAdOfFeedback.show();
+        } else {
+            startActivity(new Intent(this, FeedbackActivity.class));
+        }
+
+    }
+
+
+    //Onclick Funtion of Aboutbtn
+    public void startAboutActivity(View view) {
+        if (interstitialAdOfAbout.isLoaded()) {
+            interstitialAdOfAbout.show();
+        } else {
+            startActivity(new Intent(this, AboutActivity.class));
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -16,6 +16,7 @@ public class Design {
             this.description = description;
             this.image = image;
             this.title = title;
+
         }
 
         public String getDescription() {

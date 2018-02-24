@@ -25,7 +25,8 @@
         <activity android:name=".MyChannelActivity" />
         <activity android:name=".DesignActivity" />
         <activity android:name=".FeedbackActivity" />
-        <activity android:name=".AboutActivity"></activity>
+        <activity android:name=".AboutActivity" />
+        <activity android:name=".JewelleryActivity"></activity>
     </application>
 
 </manifest>
